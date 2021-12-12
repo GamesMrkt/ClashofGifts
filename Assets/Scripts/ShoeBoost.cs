@@ -4,19 +4,27 @@ using UnityEngine;
 
 public class ShoeBoost : MonoBehaviour, ICollectable
 {
-    // Start is called before the first frame update
-    void Start()
+    bool sendBoost = false;
+     void Start()
     {
-       
+        Destroy(this.gameObject, 10);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void GetBoost(GameObject gameObject)
     {
-
-    }
-    public void GetBoost()
-    {
-
+        if (!sendBoost)
+        {
+            if (gameObject.transform.TryGetComponent(out Npc npc))
+            {
+                if (!npc.isSpeedUp)
+                {
+                    npc.animator.SetBool("isFastRunning", true);
+                    npc.speed = npc.speed * 2f;
+                    npc.isSpeedUp = true;
+                    npc.GetShoes();
+                }
+            }
+            sendBoost = true;
+            Destroy(this.gameObject);
+        }
     }
 }

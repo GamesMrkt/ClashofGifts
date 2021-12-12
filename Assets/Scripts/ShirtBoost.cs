@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class ShirtBoost : MonoBehaviour, ICollectable
 {
-    // Start is called before the first frame update
+    bool sendBoost = false;
     void Start()
     {
+        Destroy(this.gameObject, 10);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void GetBoost(GameObject gameObject)
     {
-
-    }
-    public void GetBoost()
-    {
-
+        if (!sendBoost)
+        {
+            if (gameObject.transform.TryGetComponent(out Npc npc))
+            {
+                if (!npc.isShirted)
+                {
+                    npc.isShirted = true;
+                }
+                sendBoost = true;
+                Destroy(this.gameObject);
+            }
+        }
     }
 }

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ICollectable
 {
-    public void GetBoost();
+    public void GetBoost(GameObject gameObject);
 }
