@@ -7,9 +7,20 @@ public class Health : MonoBehaviour
     [SerializeField] int health = 5;
     [SerializeField] string enemytagName;
     [SerializeField] string allyTagName;
+    [SerializeField] GamePlayUiManager gamePlayUiManager;
+
+    void Start()
+    {
+        gamePlayUiManager = FindObjectOfType<GamePlayUiManager>();
+    }
+    public float GetHealth()
+    {
+        return health;
+    }
     private void ReduceHealth()
     {
         health--;
+        gamePlayUiManager.UpdateHealthText();
     }
     void OnTriggerEnter(Collider other)
     {

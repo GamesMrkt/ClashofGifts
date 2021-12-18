@@ -18,7 +18,7 @@ public class ShoeBoost : MonoBehaviour, ICollectable
                 if (!npc.isSpeedUp)
                 {
                     npc.animator.SetBool("isFastRunning", true);
-                    npc.speed = npc.speed * 2f;
+                    npc.speed = npc.speed * 2.5f;
                     npc.isSpeedUp = true;
                     npc.GetShoes();
                 }

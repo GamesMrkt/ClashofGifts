@@ -7,6 +7,7 @@ public class Npc : MonoBehaviour
     [SerializeField] public Material material1;
     [SerializeField] public Material material2;
     [SerializeField] public Renderer charModel;
+    [SerializeField] public Renderer charModelTshirt;
 
     [SerializeField] GameObject shoe1;
     [SerializeField] GameObject shoe2;
@@ -17,19 +18,28 @@ public class Npc : MonoBehaviour
     [SerializeField] public bool isSpeedUp;
 
     public Animator animator;
+    public float WaitForRun;
     private float t;
 
 
     protected void Start()
     {
         animator = GetComponent<Animator>();
-        charModel.material = material1;
+        if (charModel)
+        {
+            charModel.material = material1;
+        }
+        if (charModelTshirt)
+        {
+            charModelTshirt.material = material1;
+        }
+//        charModelTshirt.gameObject.SetActive(false);
     }
 
     protected void Update()
     {
         t += Time.deltaTime;
-        if (t >= 1f)
+        if (t >= WaitForRun)
         {
             animator.SetBool("isRunning", true);
             transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
@@ -53,6 +63,7 @@ public class Npc : MonoBehaviour
     public void ChangeSide()
     {
         charModel.material = material2;
+        charModelTshirt.material = material2;
     }
     public void GetShoes()
     {

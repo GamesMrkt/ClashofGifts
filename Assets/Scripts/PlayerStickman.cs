@@ -21,18 +21,21 @@ public class PlayerStickman : Npc
                     if (this.isShirted)
                     {
                         //TODO Destroy ME AND HİM
-                        Destroy(this.gameObject);
+                        print("Destroy Just Me And Him");
+                        Destroy(gameObject);
                         Destroy(other.gameObject);
                     }
                     else
                     {
                         //TODO DESTROY JUST ME
-                        Destroy(this.gameObject);
+                        print(" Destroy Just Me ");
+                        print("Destroy Just Me");
+                        Destroy(gameObject);
                     }
                 }
                 else
                 {
-                    if (this.isShirted)
+                    if (isShirted)
                     {
                         //TODO Destroy JUST HIM
                         Destroy(other.gameObject);
@@ -40,7 +43,8 @@ public class PlayerStickman : Npc
                     else
                     {
                         //TODO DESTROY ME AND HİM
-                        Destroy(this.gameObject);
+                        print("Destroy Just Me And Him");
+                        Destroy(gameObject);
                         Destroy(other.gameObject);
                     }
                 }

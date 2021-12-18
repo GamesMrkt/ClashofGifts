@@ -23,12 +23,9 @@ public class SpawnManager : MonoBehaviour
     }
     private void SpawnStickmans()
     {
-        for (int i = 0; i < playerSpawnPoints.Count; i++)
-        {
-            var spawnPos = playerSpawnPoints[i].transform.position;
-            Instantiate(playerStickmanPrefab, spawnPos, playerStickmanPrefab.transform.rotation);
-            spawnPos = enemySpawnPoints[i].transform.position;
-            Instantiate(enemyStickmanPrefab, spawnPos, enemyStickmanPrefab.transform.rotation);
-        }
+        var spawnPos = playerSpawnPoints[Random.Range(0, playerSpawnPoints.Count)].transform.position;
+        Instantiate(playerStickmanPrefab, spawnPos, playerStickmanPrefab.transform.rotation);
+        spawnPos = enemySpawnPoints[Random.Range(0, enemySpawnPoints.Count)].transform.position;
+        Instantiate(enemyStickmanPrefab, spawnPos, enemyStickmanPrefab.transform.rotation);
     }
 }

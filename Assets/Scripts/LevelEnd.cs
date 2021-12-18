@@ -12,17 +12,13 @@ public class LevelEnd : MonoBehaviour
     [SerializeField] Transform startPos, endPos;
     [SerializeField] private float speed;
     private bool isLevelEnd;
-    private bool isGetAllTiles;
     private float startTime;
     private float totalDistance;
     private float currentDuration;
     private float journeyFraction;
     private float offsetForUi;
-    private int totalEnemyTile;
-    private int totalPlayerTile;
     void Start()
     {
-        isGetAllTiles = true;
         canvasManager = GetComponent<CanvasManager>();
         totalDistance = Vector3.Distance(startPos.position, endPos.position);
         enemyShoot = FindObjectOfType<EnemyShoot>();
@@ -50,7 +46,6 @@ public class LevelEnd : MonoBehaviour
             offsetForUi += Time.deltaTime;
             if (offsetForUi > 1f)
             {
-                canvasManager.ShowLevelEndUi(totalEnemyTile, totalPlayerTile);
                 Destroy(this);
             }
         }
