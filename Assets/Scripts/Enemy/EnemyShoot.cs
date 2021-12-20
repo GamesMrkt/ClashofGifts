@@ -26,23 +26,27 @@ public class EnemyShoot : MonoBehaviour
     }
     void Update()
     {
-        t += Time.deltaTime;
-        if (t >= _time)
+        if (EnemyProjection.EnemyInstance != null)
         {
-            EnemyProjection.EnemyInstance.ShowTrajectory();
-            mousePressDownPos = new Vector3(Screen.width / 2, 0, 0);
-            int x = Random.Range(((Screen.width / 100) * xMin), ((Screen.width / 100) * xMax));
-            int y = Random.Range(((Screen.height / 100) * yMin), ((Screen.height / 100) * yMax));
-            newPos = new Vector3(Screen.width / 2 + x, y, 0);
-            Vector3 forceInit = (newPos - mousePressDownPos);
-            forceInit.y = Mathf.Clamp(forceInit.y, 150, 500);
-            Vector3 forceV = (new Vector3(forceInit.x, forceInit.y, -forceInit.y) * forceMultiplier);
-            EnemyProjection.EnemyInstance.UpdateTrajectory(forceV, rb, transform.position);
+            t += Time.deltaTime;
+            if (t >= _time)
+            {
+                EnemyProjection.EnemyInstance.ShowTrajectory();
+                mousePressDownPos = new Vector3(Screen.width / 2, 0, 0);
+                int x = Random.Range(((Screen.width / 100) * xMin), ((Screen.width / 100) * xMax));
+                int y = Random.Range(((Screen.height / 100) * yMin), ((Screen.height / 100) * yMax));
+                newPos = new Vector3(Screen.width / 2 + x, y, 0);
+                Vector3 forceInit = (newPos - mousePressDownPos);
+                forceInit.y = Mathf.Clamp(forceInit.y, 150, 500);
+                Vector3 forceV = (new Vector3(forceInit.x, forceInit.y, -forceInit.y) * forceMultiplier);
+                EnemyProjection.EnemyInstance.UpdateTrajectory(forceV, rb, transform.position);
 
-            t = 0;
-            _time = Random.Range(1, 6);
-            Invoke("SendDice", .5f);
+                t = 0;
+                _time = Random.Range(1, 6);
+                Invoke("SendDice", .5f);
+            }
         }
+
     }
 
     void Fire(Vector3 Force)
@@ -54,15 +58,22 @@ public class EnemyShoot : MonoBehaviour
     {
         mouseReleasePos = newPos;
         Fire(mouseReleasePos - mousePressDownPos);
-        EnemyProjection.EnemyInstance.HideTrajectory();
-        EnemyProjection.EnemyInstance.enabled = false;
+        if (EnemyProjection.EnemyInstance != null)
+        {
+            EnemyProjection.EnemyInstance.HideTrajectory();
+            EnemyProjection.EnemyInstance.enabled = false;
+        }
         Destroy(this);
     }
     void OnEnable()
     {
         transform.rotation = Quaternion.Euler(-90, 0, 0);
         transform.position = new Vector3(0, 0, 6.22f);
-        EnemyProjection.EnemyInstance.ShowTrajectory();
-        EnemyProjection.EnemyInstance.enabled = true;
+        if (EnemyProjection.EnemyInstance != null)
+        {
+            EnemyProjection.EnemyInstance.ShowTrajectory();
+            EnemyProjection.EnemyInstance.enabled = true;
+        }
+
     }
 }

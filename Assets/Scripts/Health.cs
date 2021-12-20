@@ -31,7 +31,7 @@ public class Health : MonoBehaviour
         }
         else if (other.CompareTag(allyTagName))
         {
-            if (gameObject.transform.TryGetComponent(out Npc npc))
+            if (other.transform.TryGetComponent(out Npc npc))
             {
                 if (npc.isTurned)
                 {

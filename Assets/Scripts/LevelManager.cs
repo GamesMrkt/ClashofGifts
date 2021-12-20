@@ -10,27 +10,13 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        allSceneCount = SceneManager.sceneCountInBuildSettings - 1;
     }
     public void LoadNextLevel()
     {
-        if (currentSceneIndex < allSceneCount)
-        {
-            currentSceneIndex++;
-            SceneManager.LoadScene(currentSceneIndex);
-        }
-        else
-        {
-            //FIXME BURASI TÜM LEVELLER BİTTİĞİNDE KAÇINCI LEVELDEN BAŞLAYACAĞINI BELİRLEMEK İÇİN
-            SceneManager.LoadScene(2);
-        }
+        SceneManager.LoadScene(currentSceneIndex);
     }
     public void QuitGame()
     {
         Application.Quit();
-    }
-    public void RestartLevel()
-    {
-        SceneManager.LoadScene(currentSceneIndex);
     }
 }

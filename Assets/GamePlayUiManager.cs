@@ -10,20 +10,18 @@ public class GamePlayUiManager : MonoBehaviour
 
     [SerializeField] Health playerHealth;
     [SerializeField] Health enemyHealth;
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void UpdateHealthText()
     {
         playerHealthTextBox.text = playerHealth.GetHealth().ToString();
         enemyHealthTextBox.text = enemyHealth.GetHealth().ToString();
+        //Check If It is any health below zero
+        HealthCheck();
+    }
+    private void HealthCheck()
+    {
+        if (playerHealth.GetHealth() < 1 || enemyHealth.GetHealth() < 1)
+        {
+            GetComponent<GameManager>().PlugOutGame(playerHealth.GetHealth(),enemyHealth.GetHealth());
+        }
     }
 }

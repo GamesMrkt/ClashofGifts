@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class LevelEnd : MonoBehaviour
 {
-    private CanvasManager canvasManager;
-    private EnemyShoot enemyShoot;
-    private EnemyTimer enemyTimer;
-    private Timer timer;
-    private Shoot shoot;
+    [SerializeField] GameObject gamePlayUi;
     [SerializeField] Transform startPos, endPos;
     [SerializeField] private float speed;
     private bool isLevelEnd;
@@ -19,18 +15,13 @@ public class LevelEnd : MonoBehaviour
     private float offsetForUi;
     void Start()
     {
-        canvasManager = GetComponent<CanvasManager>();
         totalDistance = Vector3.Distance(startPos.position, endPos.position);
-        enemyShoot = FindObjectOfType<EnemyShoot>();
-        enemyTimer = FindObjectOfType<EnemyTimer>();
-        timer = FindObjectOfType<Timer>();
-        shoot = FindObjectOfType<Shoot>();
     }
     void Update()
     {
         if (isLevelEnd)
         {
-            PlugOutGame();
+            Destroy(gamePlayUi.gameObject);
             CameraPositionChange();
         }
     }
@@ -42,26 +33,17 @@ public class LevelEnd : MonoBehaviour
     {
         if (Camera.main.transform.position == endPos.position)
         {
-
             offsetForUi += Time.deltaTime;
             if (offsetForUi > 1f)
             {
                 Destroy(this);
             }
         }
-
         startTime = startTime == 0 ? Time.time : startTime;
         currentDuration = (Time.time - startTime) * speed;
         journeyFraction = currentDuration / totalDistance;
         Camera.main.transform.position = Vector3.Lerp(startPos.position, endPos.position, journeyFraction);
         Camera.main.transform.rotation = Quaternion.Lerp(startPos.rotation, endPos.rotation, journeyFraction);
     }
-    private void PlugOutGame()
-    {
-        enemyShoot.enabled = false;
-        enemyTimer.enabled = false;
-        timer.enabled = false;
-        shoot.enabled = false;
-    }
-   
+
 }
