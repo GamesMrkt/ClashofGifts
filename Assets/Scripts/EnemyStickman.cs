@@ -21,12 +21,14 @@ public class EnemyStickman : Npc
                     if (this.isShirted)
                     {
                         //TODO Destroy ME AND HİM
+                        splashSpawner.Splash(this.transform.position, "Enemy");
                         Destroy(gameObject);
                         Destroy(other.gameObject);
                     }
                     else
                     {
                         //TODO DESTROY JUST ME
+                        splashSpawner.Splash(this.transform.position, "Enemy");
                         Destroy(gameObject);
                     }
                 }
@@ -40,6 +42,7 @@ public class EnemyStickman : Npc
                     else
                     {
                         //TODO DESTROY ME AND HİM
+                        splashSpawner.Splash(this.transform.position, "Enemy");
                         Destroy(gameObject);
                         Destroy(other.gameObject);
                     }
@@ -57,12 +60,14 @@ public class EnemyStickman : Npc
                     if (this.isShirted)
                     {
                         //TODO Destroy ME AND HİM
+                        splashSpawner.Splash(this.transform.position, "Enemy");
                         Destroy(gameObject);
                         Destroy(enemyStickman.gameObject);
                     }
                     else
                     {
                         //TODO DESTROY JUST ME
+                        splashSpawner.Splash(this.transform.position, "Enemy");
                         Destroy(gameObject);
                     }
                 }
@@ -76,6 +81,7 @@ public class EnemyStickman : Npc
                     else
                     {
                         //TODO DESTROY ME AND HİM
+                        splashSpawner.Splash(this.transform.position, "Enemy");
                         Destroy(gameObject);
                         Destroy(enemyStickman.gameObject);
                     }

@@ -17,6 +17,7 @@ public class Npc : MonoBehaviour
     [SerializeField] public bool isTurned;
     [SerializeField] public bool isSpeedUp;
 
+    public SplashSpawner splashSpawner;
     public Animator animator;
     public float WaitForRun;
     private float t;
@@ -24,6 +25,7 @@ public class Npc : MonoBehaviour
 
     protected void Start()
     {
+        splashSpawner = FindObjectOfType<SplashSpawner>();
         animator = GetComponent<Animator>();
         if (charModel)
         {
@@ -33,7 +35,7 @@ public class Npc : MonoBehaviour
         {
             charModelTshirt.material = material1;
         }
-//        charModelTshirt.gameObject.SetActive(false);
+        //        charModelTshirt.gameObject.SetActive(false);
     }
 
     protected void Update()
