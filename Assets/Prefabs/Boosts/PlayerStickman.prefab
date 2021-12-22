@@ -1555,7 +1555,7 @@ Transform:
   m_GameObject: {fileID: 8406133003843793508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.625, y: 0.625, z: 0.625}
   m_Children:
   - {fileID: 239694168376506432}
   - {fileID: 7903434520481768102}
@@ -1581,7 +1581,7 @@ MonoBehaviour:
   charModelTshirt: {fileID: 4303745314393691917}
   shoe1: {fileID: 5834012925675248297}
   shoe2: {fileID: 4163035433912344133}
-  speed: 0.35
+  speed: 0.3
   isShirted: 0
   isTurned: 0
   isSpeedUp: 0

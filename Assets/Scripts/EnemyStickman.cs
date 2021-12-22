@@ -52,8 +52,34 @@ public class EnemyStickman : Npc
             enemyStickman = other.transform.GetComponent<EnemyStickman>();
             if (enemyStickman.isTurned)
             {
-                Destroy(this.gameObject);
-                Destroy(other.gameObject);
+                if (enemyStickman.isShirted)
+                {
+                    if (this.isShirted)
+                    {
+                        //TODO Destroy ME AND HİM
+                        Destroy(gameObject);
+                        Destroy(enemyStickman.gameObject);
+                    }
+                    else
+                    {
+                        //TODO DESTROY JUST ME
+                        Destroy(gameObject);
+                    }
+                }
+                else
+                {
+                    if (this.isShirted)
+                    {
+                        //TODO Destroy JUST HIM
+                        Destroy(enemyStickman.gameObject);
+                    }
+                    else
+                    {
+                        //TODO DESTROY ME AND HİM
+                        Destroy(gameObject);
+                        Destroy(enemyStickman.gameObject);
+                    }
+                }
             }
         }
     }
