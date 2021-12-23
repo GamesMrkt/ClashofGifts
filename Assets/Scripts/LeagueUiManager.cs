@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class LeagueUiManager : MonoBehaviour
@@ -10,6 +11,8 @@ public class LeagueUiManager : MonoBehaviour
     [SerializeField] GameObject tapToContinue;
     [SerializeField] GameObject youWinText;
     [SerializeField] GameObject youLoseText;
+    [SerializeField] Image Image;
+    [SerializeField] Sprite loseSprite;
     int addScoreValue;
     int worldRank;
     int singleValue = 0;
@@ -39,6 +42,7 @@ public class LeagueUiManager : MonoBehaviour
                 StartCoroutine(SetWorldRank(0.001f));
 
             youWinText.SetActive(true);
+
         }
         else
         {
@@ -47,6 +51,7 @@ public class LeagueUiManager : MonoBehaviour
             addScoreValue = Random.Range(25, 51);
             StartCoroutine(SetWorldRank(0.01f));
             youLoseText.SetActive(true);
+            Image.sprite = loseSprite;
         }
     }
 

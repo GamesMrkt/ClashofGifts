@@ -12,12 +12,12 @@ public class SplashSpawner : MonoBehaviour
         if (team == "Player")
         {
             var splash = Instantiate(playerSplash, position + Vector3.up * .01f, Quaternion.identity);
-            Destroy(splash, 10f);
+            Destroy(splash, 5f);
         }
         else
         {
             var splash = Instantiate(enemySplash, position + Vector3.up * .01f, Quaternion.identity);
-            Destroy(splash, 10f);
+            Destroy(splash, 5f);
         }
     }
 }

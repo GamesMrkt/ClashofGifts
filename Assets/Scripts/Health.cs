@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
     [SerializeField] int health = 5;
     [SerializeField] string enemytagName;
     [SerializeField] string allyTagName;
-    [SerializeField] GamePlayUiManager gamePlayUiManager;
+    GamePlayUiManager gamePlayUiManager;
 
     void Start()
     {

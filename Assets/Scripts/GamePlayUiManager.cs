@@ -10,6 +10,11 @@ public class GamePlayUiManager : MonoBehaviour
 
     [SerializeField] Health playerHealth;
     [SerializeField] Health enemyHealth;
+    GameManager manager;
+    void Start()
+    {
+        manager = FindObjectOfType<GameManager>();
+    }
     public void UpdateHealthText()
     {
         playerHealthTextBox.text = playerHealth.GetHealth().ToString();
@@ -21,7 +26,7 @@ public class GamePlayUiManager : MonoBehaviour
     {
         if (playerHealth.GetHealth() < 1 || enemyHealth.GetHealth() < 1)
         {
-            GetComponent<GameManager>().PlugOutGame(playerHealth.GetHealth(),enemyHealth.GetHealth());
+            manager.PlugOutGame(playerHealth.GetHealth(), enemyHealth.GetHealth());
         }
     }
 }

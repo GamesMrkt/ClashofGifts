@@ -22,7 +22,7 @@ public class Shoot : MonoBehaviour
         else if (Input.GetMouseButton(0))
         {
             Vector3 forceInit = (Input.mousePosition - mousePressDownPos);
-            forceInit.y = Mathf.Clamp(forceInit.y, 150, 500);
+            forceInit.y = Mathf.Clamp(forceInit.y, 250, 800);
             Vector3 forceV = (new Vector3(forceInit.x, forceInit.y, forceInit.y) * forceMultiplier);
             Projection.Instance.UpdateTrajectory(forceV, rb, transform.position);
         }
@@ -38,7 +38,7 @@ public class Shoot : MonoBehaviour
 
     void Fire(Vector3 Force)
     {
-        Force.y = Mathf.Clamp(Force.y, 150, 500);
+        Force.y = Mathf.Clamp(Force.y, 250,800);
         rb.AddForce(new Vector3(Force.x, Force.y, Force.y) * forceMultiplier);
     }
     void OnEnable()
