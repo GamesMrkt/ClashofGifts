@@ -63,6 +63,7 @@ public class EnemyShoot : MonoBehaviour
             EnemyProjection.EnemyInstance.HideTrajectory();
             EnemyProjection.EnemyInstance.enabled = false;
         }
+        Destroy(this.gameObject, 3f);
         Destroy(this);
     }
     void OnEnable()

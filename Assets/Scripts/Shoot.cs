@@ -22,7 +22,9 @@ public class Shoot : MonoBehaviour
         else if (Input.GetMouseButton(0))
         {
             Vector3 forceInit = (Input.mousePosition - mousePressDownPos);
-            forceInit.y = Mathf.Clamp(forceInit.y, 250, 800);
+            //Lock down there
+            forceInit.y = Mathf.Clamp(forceInit.y, 250, 460);
+            forceInit.x = Mathf.Clamp(forceInit.x, -200, 200);
             Vector3 forceV = (new Vector3(forceInit.x, forceInit.y, forceInit.y) * forceMultiplier);
             Projection.Instance.UpdateTrajectory(forceV, rb, transform.position);
         }
@@ -32,13 +34,16 @@ public class Shoot : MonoBehaviour
             Fire(mouseReleasePos - mousePressDownPos);
             Projection.Instance.HideTrajectory();
             Projection.Instance.enabled = false;
+            Destroy(this.gameObject, 3f);
             Destroy(this);
         }
     }
 
     void Fire(Vector3 Force)
     {
-        Force.y = Mathf.Clamp(Force.y, 250,800);
+        //Lock down there
+        Force.y = Mathf.Clamp(Force.y, 250, 460);
+        Force.x = Mathf.Clamp(Force.x, -200, 200);
         rb.AddForce(new Vector3(Force.x, Force.y, Force.y) * forceMultiplier);
     }
     void OnEnable()
