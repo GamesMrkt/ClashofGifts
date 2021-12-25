@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     public float PlayerScore;
     public float EnemyScore;
 
+    void Awake()
+    {
+        TinySauce.OnGameStarted();
+    }
     void Start()
     {
         spawnManager = FindObjectOfType<SpawnManager>();
@@ -36,6 +40,7 @@ public class GameManager : MonoBehaviour
         Destroy(spawnManager);
         Destroy(enemyProjection);
         StartCoroutine(LevelEnd());
+        TinySauce.OnGameFinished(playerScore);
 
     }
     IEnumerator LevelEnd()
