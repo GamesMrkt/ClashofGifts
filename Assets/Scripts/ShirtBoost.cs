@@ -20,6 +20,8 @@ public class ShirtBoost : MonoBehaviour, ICollectable
                     npc.isShirted = true;
                     npc.charModel.gameObject.SetActive(false);
                     npc.charModelTshirt.gameObject.SetActive(true);
+                    npc.toyHammer.SetActive(true);
+                    
                 }
                 sendBoost = true;
                 Destroy(this.gameObject);

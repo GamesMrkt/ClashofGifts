@@ -7,15 +7,50 @@ public class EnemyStickman : Npc
 
     private EnemyStickman enemyStickman;
     private PlayerStickman playerStickman;
+    private GameObject collidedGameObj;
 
     protected override void OnCollisionEnter(Collision other)
     {
         base.OnCollisionEnter(other);
+
         if (other.transform.CompareTag("PlayerStickman"))
         {
-            playerStickman = other.transform.GetComponent<PlayerStickman>();
+            collidedGameObj = other.gameObject;
+            playerStickman = collidedGameObj.transform.GetComponent<PlayerStickman>();
             if (!playerStickman.isTurned)
             {
+                Stop();
+                animator.SetBool("isHitting", true);
+            }
+        }
+        else if (other.transform.CompareTag("EnemyStickman"))
+        {
+            collidedGameObj = other.gameObject;
+            enemyStickman = collidedGameObj.transform.GetComponent<EnemyStickman>();
+            if (enemyStickman.isTurned)
+            {
+                Stop();
+                animator.SetBool("isHitting", true);
+            }
+            else if (this.isTurned)
+            {
+                Stop();
+                animator.SetBool("isHitting", true);
+            }
+        }
+    }
+    public void DoHit()
+    {
+        if (collidedGameObj = null)
+        {
+            return;
+        }
+
+        if (playerStickman)
+        {
+            if (!playerStickman.isTurned)
+            {
+                animator.SetBool("isHitting", true);
                 if (playerStickman.isShirted)
                 {
                     if (this.isShirted)
@@ -23,7 +58,7 @@ public class EnemyStickman : Npc
                         //TODO Destroy ME AND HİM
                         splashSpawner.Splash(this.transform.position, "Enemy");
                         Destroy(gameObject);
-                        Destroy(other.gameObject);
+                        Destroy(collidedGameObj);
                     }
                     else
                     {
@@ -34,27 +69,27 @@ public class EnemyStickman : Npc
                 }
                 else
                 {
-                    if (this.isShirted)
+                    if (isShirted)
                     {
                         //TODO Destroy JUST HIM
-                        Destroy(other.gameObject);
+                        Destroy(collidedGameObj);
                     }
                     else
                     {
                         //TODO DESTROY ME AND HİM
                         splashSpawner.Splash(this.transform.position, "Enemy");
                         Destroy(gameObject);
-                        Destroy(other.gameObject);
+                        Destroy(collidedGameObj);
                     }
                 }
             }
 
         }
-        else if (other.transform.CompareTag("EnemyStickman"))
+        else if (enemyStickman)
         {
-            enemyStickman = other.transform.GetComponent<EnemyStickman>();
             if (enemyStickman.isTurned)
             {
+                animator.SetBool("isHitting", true);
                 if (enemyStickman.isShirted)
                 {
                     if (this.isShirted)
@@ -73,7 +108,42 @@ public class EnemyStickman : Npc
                 }
                 else
                 {
+                    if (isShirted)
+                    {
+                        //TODO Destroy JUST HIM
+                        Destroy(enemyStickman.gameObject);
+                    }
+                    else
+                    {
+                        //TODO DESTROY ME AND HİM
+                        splashSpawner.Splash(this.transform.position, "Enemy");
+                        Destroy(gameObject);
+                        Destroy(enemyStickman.gameObject);
+                    }
+                }
+            }
+            else if (this.isTurned)
+            {
+                animator.SetBool("isHitting", true);
+                if (enemyStickman.isShirted)
+                {
                     if (this.isShirted)
+                    {
+                        //TODO Destroy ME AND HİM
+                        splashSpawner.Splash(this.transform.position, "Enemy");
+                        Destroy(gameObject);
+                        Destroy(enemyStickman.gameObject);
+                    }
+                    else
+                    {
+                        //TODO DESTROY JUST ME
+                        splashSpawner.Splash(this.transform.position, "Enemy");
+                        Destroy(gameObject);
+                    }
+                }
+                else
+                {
+                    if (isShirted)
                     {
                         //TODO Destroy JUST HIM
                         Destroy(enemyStickman.gameObject);
@@ -88,5 +158,8 @@ public class EnemyStickman : Npc
                 }
             }
         }
+        animator.SetBool("isHitting", false);
+        GoOn();
+        collidedGameObj = null;
     }
 }

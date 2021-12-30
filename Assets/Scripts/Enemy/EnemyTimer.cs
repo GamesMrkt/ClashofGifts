@@ -44,6 +44,6 @@ public class EnemyTimer : MonoBehaviour
     }
     private void SpawnBoost()
     {
-        boostManager.SpawnBoost(new Vector3(0, 0, 6.2f));
+        boostManager.SpawnBoost(new Vector3(0, 0, 6.871f));
     }
 }

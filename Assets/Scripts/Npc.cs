@@ -8,6 +8,7 @@ public class Npc : MonoBehaviour
     [SerializeField] public Material material2;
     [SerializeField] public Renderer charModel;
     [SerializeField] public Renderer charModelTshirt;
+    [SerializeField] public GameObject toyHammer;
 
     [SerializeField] GameObject shoe1;
     [SerializeField] GameObject shoe2;
@@ -21,12 +22,12 @@ public class Npc : MonoBehaviour
     public Animator animator;
     public float WaitForRun;
     private float t;
+    private float tempSpeed;
 
 
     protected void Start()
     {
         splashSpawner = FindObjectOfType<SplashSpawner>();
-        animator = GetComponent<Animator>();
         if (charModel)
         {
             charModel.material = material1;
@@ -71,6 +72,19 @@ public class Npc : MonoBehaviour
     {
         shoe1.SetActive(true);
         shoe2.SetActive(true);
+    }
+    public void StopFight()
+    {
+        animator.SetBool("isHitting", false);
+    }
+    public void Stop()
+    {
+        tempSpeed = speed;
+        speed = 0;
+    }
+    public void GoOn()
+    {
+        speed = tempSpeed;
     }
 
 }

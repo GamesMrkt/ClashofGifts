@@ -22,8 +22,9 @@ public class BoostManager : MonoBehaviour
         }
 
         previousBoostIndex = _x;
-        boost = Instantiate(boosts[_x], pos, Quaternion.identity);
+        boost = Instantiate(boosts[_x], Vector3.zero, Quaternion.identity);
         boost.transform.parent = GetChildWithName(GetChildWithName(gift, "GiftPackage"), "Boost").transform;
+        boost.transform.localPosition = Vector3.zero;
         boost.transform.rotation = Quaternion.Euler(Vector3.zero);
         Invoke("SetParentNull", .75f);
     }
